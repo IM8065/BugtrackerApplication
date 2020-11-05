@@ -1,0 +1,54 @@
+﻿@model IEnumerable<IdentityRole>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-white">All Roles</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="button-custom is-primary">
+                Create a Role
+            </a>
+        </div>
+    </div>
+
+    <br /><br />
+
+    @if (Model.Count() > 0)
+    {
+        <table id="table-style">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td>@obj.Id</td>
+                        <td>@obj.Name</td>
+                        <td>
+                            <div class="button-group" role="group">
+                                <a class="button-custom is-warning" asp-action="Update" asp-route-id="@obj.Id">Update</a>
+                                <form asp-action="Delete" asp-route-id="@obj.Id" method="post">
+                                    <button type="submit" class="button-custom is-danger">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Available Roles</p>
+    }
+
+</div>
+

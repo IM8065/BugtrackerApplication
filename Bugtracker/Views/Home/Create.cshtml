@@ -1,0 +1,33 @@
+﻿@model Bugtracker.Models.ViewModels.ProjectVM
+
+<form method="post" asp-action="Create">
+    <section class="form-section">
+        <div class="form-container">
+            <span class="form-title">
+                Add Project
+            </span>
+
+            <div class="form-field">
+                <label class="form-label" asp-for="Project.Name"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="Project.Name" />
+                </div>
+            </div>
+            <div class="form-field">
+                <label class="form-label" asp-for="Project.ShortDesc"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="Project.ShortDesc" />
+                </div>
+            </div>
+            <div class="form-field is-grouped">
+                <div class="form-control">
+                    <input type="submit" class="button-custom form-button" value="Create" />
+                    <button asp-action="Index" class="button-custom form-button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+

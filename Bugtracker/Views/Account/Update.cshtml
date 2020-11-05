@@ -1,0 +1,32 @@
+﻿@model Bugtracker.Models.ApplicationUser
+
+<form method="post" asp-action="Update">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <section class="form-section">
+        <div class="form-container">
+            <span class="form-title">
+                Update User
+            </span>
+            <div class="form-field">
+                <label class="form-label" asp-for="Id"></label>
+                <input class="form-input" asp-for="Id" disabled />
+            </div>
+            <div class="form-field">
+                <label class="form-label" asp-for="Email"></label>
+                <input class="form-input" asp-for="Email" />
+            </div>
+            <div class="form-field">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-input" name="password" />
+            </div>
+
+            <div class="form-field is-grouped">
+                <div class="form-control">
+                    <button type="submit" class="button form-button">Save</button>
+                    <button asp-action="Profile" class="button form-button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

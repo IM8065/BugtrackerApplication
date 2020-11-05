@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Bugtracker.Models.TicketModel>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-white">Ticket List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Upsert" class="button-custom is-primary">
+                Create New Ticket
+            </a>
+        </div>
+    </div>
+
+    <br /><br />
+
+    @if (Model.Count() > 0)
+    {
+        <table id="table-style">
+            <thead>
+                <tr>
+                    <th scope="col">Ticket Name</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Severity</th>
+                    <th scope="col">Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                <tr>
+                    <td>@obj.Title</td>
+                    <td>@obj.Created</td>
+                    <td>@obj.Description</td>
+                    <td>@obj.Severity.severityLevel</td>
+                    <td>@obj.TicketStatus.currentStatus</td>
+                    <td>
+                        <div class="button-group" role="group">
+                            <a asp-route-Id="@obj.Id" asp-action="Upsert" class="button-custom is-warning">
+                                Edit
+                            </a>
+                            <a asp-route-Id="@obj.Id" asp-action="Delete" class="button-custom is-danger">
+                                Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p> No ticket exists.</p>
+    }
+
+</div>
+

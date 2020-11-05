@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Bugtracker</title>
+    <link href="~/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+
+    <header class="nav-header">
+        <div class="menu-btn">
+            <div class="menu-btn__lines"></div>
+        </div>
+        <nav class="navbar-style">
+            <div>
+                <partial name="_LoginPartial"/>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main">
+        <div class="sidebar">
+            <p class="custom-label">General</p>
+            <div class="sidebar-list">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Projects</a>
+                <a asp-area="" asp-controller="Ticket" asp-action="Index">Tickets</a>
+                <a asp-area="" asp-controller="Account" asp-action="Profile">Profile</a>
+            </div>
+
+            <p class="custom-label">Administrator</p>
+            <div class="sidebar-list">
+                <a asp-area="" asp-controller="Status" asp-action="Index">Status</a>
+                <a asp-area="" asp-controller="Severity" asp-action="Index">Severity</a>
+                <a asp-area="" asp-controller="Role" asp-action="Index">Roles</a>
+                <a asp-area="" asp-controller="Account" asp-action="Index">Users</a>
+            </div>
+        </div>
+
+        <div class="content-custom">
+            @RenderBody()
+        </div>
+    </div>
+    <script>
+        const menuBtn = document.querySelector(".menu-btn");
+        const sidebar = document.querySelector(".sidebar");
+
+        menuBtn.addEventListener("click", () => {
+            toggle();
+        });
+
+        function toggle() {
+            sidebar.classList.toggle("close");
+        }
+    </script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

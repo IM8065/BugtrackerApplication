@@ -1,0 +1,30 @@
+﻿@model Bugtracker.Models.Project
+
+<form method="post">
+    <input asp-for="Id" hidden />
+    <section class="form-section">
+        <div class="form-container">
+            <span class="form-title">Edit Project</span>
+            <div class="form-field">
+                <label class="form-label" asp-for="Name"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="Name" />
+                </div>
+            </div>
+            <div class="form-field">
+                <label class="form-label" asp-for="ShortDesc"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="ShortDesc" />
+                </div>
+            </div>
+            <div class="form-field is-grouped">
+                <div class="form-group">
+                    <input type="submit" class="button-custom form-button" value="Update" />
+                    <button asp-action="Index" class="button-custom form-button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

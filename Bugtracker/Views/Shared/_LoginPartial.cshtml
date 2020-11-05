@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> _signInManager
+
+    @if (_signInManager.IsSignedIn(User))
+    {
+        <a id="manage" class="nav-link text-dark" title="Manage">Hello, @(User.FindFirst("UserFirstName").Value)</a>
+        <a class="login-register" id="logout" asp-controller="Account" asp-action="Logout">Logout</a>
+    }
+    else
+    {
+        <a class="login-register" id="register" asp-controller="Account" asp-action="Signup">Register</a>
+        <a class="login-register" id="login" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">Login</a>        
+     }
+

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Bugtracker.Models.ApplicationUser>
+
+<h2 class="text-white">All Users</h2>
+
+<table id="table-style">
+    <thead>
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.Email</td>
+                <td>
+                    <div class="button-group">
+                        <form method="post" asp-action="Delete" asp-controller="Account" asp-route-Id="@user.Id">
+                            <button class="button-custom is-danger" type="submit">
+                                Remove User
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,20 @@
+﻿@model Bugtracker.Models.ViewModels.HomeVM
+
+<div class="container">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-white">Projects</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Home" asp-action="Create" class="button-custom is-primary">
+                Create New Project
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var proj in Model.Projects)
+        {
+            <partial name="_IndividualProjectCard" model="proj" />
+        }
+    </div>
+</div>

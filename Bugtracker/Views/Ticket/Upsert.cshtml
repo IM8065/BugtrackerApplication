@@ -1,0 +1,79 @@
+﻿@model Bugtracker.Models.ViewModels.TicketVM
+
+@{
+    var title = "Create Ticket";
+}
+
+<form method="post" enctype="multipart/form-data">
+    @if (Model.TicketModel.Id != 0)
+    {
+        title = "Edit Ticket";
+        <input asp-for="TicketModel.Id" hidden />
+    }
+    <section class="form-section">
+        <div class="form-container">
+            <span class="form-title">
+                @title
+            </span>
+
+            <div class="form-field">
+                <label class="form-label" asp-for="TicketModel.Title"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="TicketModel.Title" />
+                </div>
+            </div>
+            <div class="form-field">
+                <label class="form-label" asp-for="TicketModel.Created"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="TicketModel.Created" />
+                </div>
+            </div>
+            <div class="form-field">
+                <label class="form-label" asp-for="TicketModel.Description"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="TicketModel.Description" />
+                </div>
+            </div>
+
+
+            <div class="form-field">
+                <label class="form-label" asp-for="TicketModel.SeverityId"></label>
+
+                <select asp-for="TicketModel.SeverityId" asp-items="@Model.SeverityList" class="select-drop">
+                    <option disabled selected class="dropdown-item-custom">--Select Severity--</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label class="form-label" asp-for="TicketModel.TicketStatusId"></label>
+
+                <select asp-for="TicketModel.TicketStatusId" asp-items="@Model.StatusList" class="select-drop">
+                    <option disabled selected class="dropdown-item-custom">--Select Status--</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label class="form-label" asp-for="TicketModel.ProjectId"></label>
+
+                <select asp-for="TicketModel.ProjectId" asp-items="@Model.AvailableProjects" class="select-drop">
+                    <option disabled selected class="dropdown-item-custom">--Select Project--</option>
+                </select>
+            </div>
+            <div class="form-field is-grouped">
+                <div class="form-control">
+                    @if (Model.TicketModel.Id != 0)
+                    {
+                        <input type="submit" class="button form-button" value="Update" />
+                    }
+                    else
+                    {
+                        <input type="submit" class="button form-button" value="Create" />
+                    }
+                    <button asp-action="Index" class="button form-button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

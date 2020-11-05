@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Bugtracker.Models.Severity>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-white">Severity List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Severity" asp-action="Create" class="button-custom is-primary">
+                Create New Severity
+            </a>
+        </div>
+    </div>
+
+    <br /><br />
+
+    @if (Model.Count() > 0)
+    {
+        <table id="table-style">
+            <thead>
+                <tr>
+                    <th scope="col">Severity Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td>@obj.severityLevel</td>
+                        <td>
+                            <div class="button-group" role="group">
+                                <a asp-controller="Severity" asp-route-Id="@obj.Id" asp-action="Edit" class="button-custom is-warning">
+                                    Edit
+                                </a>
+                                <a asp-controller="Severity" asp-route-Id="@obj.Id" asp-action="Delete" class="button-custom is-danger">
+                                    Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p> No category exists.</p>
+    }
+
+</div>

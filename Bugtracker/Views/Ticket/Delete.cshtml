@@ -1,0 +1,49 @@
+﻿@model Bugtracker.Models.TicketModel
+
+<form method="post">
+    <input asp-for="Id" hidden />
+    <section class="form-section">
+        <div class="form-container">
+            <span class="form-title">Delete Ticket</span>
+            <div class="form-field">
+                <label class="form-label" asp-for="Title"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="Title" disabled />
+                </div>
+            </div>
+            <div class="form-field">
+                <label class="form-label" asp-for="Created"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="Created" disabled />
+                </div>
+            </div>
+            <div class="form-field">
+                <label class="form-label" asp-for="Description"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="Description" disabled />
+                </div>
+            </div>
+            <div class="form-field">
+                <label class="form-label" asp-for="SeverityId"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="Severity.severityLevel" disabled />
+                </div>
+            </div>
+            <div class="form-field">
+                <label class="form-label" asp-for="TicketStatusId"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="TicketStatus.currentStatus" disabled />
+                </div>
+            </div>
+            <div class="form-field is-grouped">
+                <input type="submit" class="button is-danger form-button" value="Delete" />
+                <button asp-action="Index" class="button is-success form-button">Cancel</button>
+            </div>
+        </div>
+</section>
+</form>

@@ -1,0 +1,68 @@
+﻿@model Bugtracker.Models.RoleEdit
+<form method="post">
+    <input type="hidden" name="roleName" asp-for="@Model.Role.Name" />
+    <input type="hidden" name="roleId" asp-for="@Model.Role.Id" />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <section class="form-section">
+        <div class="form-container">
+            <span class="form-title">
+                Update Role
+            </span>
+            <div class="form-field">
+                <h2>Add To @Model.Role.Name</h2>
+                <table id="table-style">
+                    @if (Model.NonMembers.Count() == 0)
+                    {
+                        <tr>
+                            <td scope="col">All Users Are Members</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (ApplicationUser user in Model.NonMembers)
+                        {
+                            <tr>
+                                <td>@user.FirstName</td>
+                                <td>
+                                    <input type="checkbox" name="AddIds" value="@user.Id">
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+            <div class="form-field">
+                <h2>Remove From @Model.Role.Name</h2>
+                <table id="table-style">
+                    @if (Model.Members.Count() == 0)
+                    {
+                        <tr>
+                            <td scope="col">No Users Are Members</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (ApplicationUser user in Model.Members)
+                        {
+                            <tr>
+                                <td>@user.FirstName</td>
+                                <td>
+                                    <input type="checkbox" name="DeleteIds" value="@user.Id">
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+
+            <div class="form-field is-grouped">
+                <div class="form-control">
+                    <button type="submit" class="button form-button">Save</button>
+                    <button asp-action="Index" class="button form-button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

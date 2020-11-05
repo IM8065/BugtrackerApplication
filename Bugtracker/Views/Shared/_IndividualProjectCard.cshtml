@@ -1,0 +1,12 @@
+﻿@model Bugtracker.Models.Project
+<div class="card-wrapper">
+    <div class="card-custom">
+        <div class="card-custom-title">@Model.Name</div>
+        <div class="card-custom-description">@Model.ShortDesc</div>
+        <div class="card-custom-footer">
+            <a asp-action="Details" asp-route-id="@Model.Id">Details</a>
+            <a asp-controller="Home" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+            <a asp-controller="Home" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+        </div>
+    </div>
+</div>

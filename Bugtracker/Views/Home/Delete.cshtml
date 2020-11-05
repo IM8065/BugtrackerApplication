@@ -1,0 +1,78 @@
+﻿@model Bugtracker.Models.ViewModels.DetailsVM
+
+<form method="post" asp-action="DeletePost">
+    <input asp-for="@Model.Project.Id" hidden />
+    <section class="form-section">
+        <div class="form-container">
+            <span class="form-title">Delete Project</span>
+            <div class="form-field">
+                <label class="form-label" asp-for="@Model.Project.Name"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="@Model.Project.Name" disabled />
+                </div>
+            </div>
+            <div class="form-field">
+                <label class="form-label" asp-for="@Model.Project.ShortDesc"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="@Model.Project.ShortDesc" disabled />
+                </div>
+            </div>
+            <div class="container p-3">
+                <h2>Project Tickets</h2>
+                @if (Model.Tickets.Count() > 0)
+                {
+                    <table id="table-style">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Severity</th>
+                                <th scope="col">Created</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var obj in Model.Tickets)
+                            {
+                                <tr>
+                                    <td>@obj.Title</td>
+                                    <td>@obj.TicketStatus.currentStatus</td>
+                                    <td>@obj.Severity.severityLevel</td>
+                                    <td>@obj.Created</td>
+                                    <td class="text-center">
+                                        <div class="button-group">
+                                            <a asp-controller="Ticket" asp-route-Id="@obj.Id" asp-action="Details" class="button-custom is-success">
+                                                Details
+                                            </a>
+                                            <a asp-controller="Ticket" asp-route-Id="@obj.Id" asp-action="Upsert" class="button-custom is-warning">
+                                                Edit
+                                            </a>
+                                            <a asp-controller="Ticket" asp-route-Id="@obj.Id" asp-action="Delete" class="button-custom is-danger">
+                                                Delete
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p> No tickets assigned to this project yet.</p>
+                }
+
+            </div>
+            <div class="form-field is-grouped">
+                <input type="submit" class="button-custom is-danger form-button" value="Delete" />
+                <button asp-action="Index" class="button-custom is-success form-button">Cancel</button>
+            </div>
+        </div>
+    </section>
+</form>
+
+
+
+

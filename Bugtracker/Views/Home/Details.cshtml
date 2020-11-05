@@ -1,0 +1,62 @@
+﻿@model Bugtracker.Models.ViewModels.DetailsVM
+
+
+<div class="project-detail-card">
+    <header class="project-detail-card-header">
+        <div class="project-detail-card-header-title">
+            <a asp-controller="Home" asp-action="Index" id="back"><i class="arrow-custom left-arrow"></i>Back To Projects</a>            
+            <h3>@Model.Project.Name - Details</h3>
+        </div>
+    </header>
+    <div class="project-detail-card-content">
+        <div class="content">
+            <h3>Description</h3>
+            <p class="text-secondary">@Model.Project.ShortDesc</p>
+
+            <h3>Assigned Tickets</h3>
+            <div class="container p-3">
+                @if (Model.Tickets.Count() > 0)
+                {
+                    <table id="table-style">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Severity</th>
+                                <th scope="col">Created</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var obj in Model.Tickets)
+                            {
+                                <tr>
+                                    <td>@obj.Title</td>
+                                    <td>@obj.TicketStatus.currentStatus</td>
+                                    <td>@obj.Severity.severityLevel</td>
+                                    <td>@obj.Created</td>
+                                    <td>
+                                        <div class="button-group">
+                                            <a asp-controller="Ticket" asp-route-Id="@obj.Id" asp-action="Upsert" class="button-custom is-warning">
+                                                Edit
+                                            </a>
+                                            <a asp-controller="Ticket" asp-route-Id="@obj.Id" asp-action="Delete" class="button-custom is-danger">
+                                                Delete
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p> No tickets assigned to this project yet.</p>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+

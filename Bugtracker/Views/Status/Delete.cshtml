@@ -1,0 +1,22 @@
+﻿@model Bugtracker.Models.Status
+
+<form method="post" asp-action="DeletePost">
+    <input asp-for="Id" hidden/>
+    <section class="form-section">
+        <div class="form-container">
+            <span class="form-title">Delete Status</span>
+            <div class="form-field">
+                <label class="form-label" asp-for="currentStatus"></label>
+
+                <div class="form-control">
+                    <input class="form-input" asp-for="currentStatus" disabled />
+                </div>
+            </div>
+            <div class="form-field is-grouped">
+                <input type="submit" class="button-custom is-danger form-button" value="Delete" />
+                <button asp-action="Index" class="button-custom is-success form-button">Cancel</button>
+            </div>
+        </div>
+    </section>
+</form>
+
